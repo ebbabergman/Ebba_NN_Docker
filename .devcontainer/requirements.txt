@@ -1,0 +1,4 @@
+pandas
+pylint
+Pillow
+matplotlib

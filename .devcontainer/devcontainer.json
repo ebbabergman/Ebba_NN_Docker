@@ -1,0 +1,20 @@
+{
+	"name": "ebba_cnn_docker",
+	"context": "..",
+	"dockerFile": "Dockerfile",
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.pylintPath": "/usr/local/bin/pylint"
+	},
+	"remoteUser": "vscode",
+	"extensions": [
+		"ms-python.python",
+		"ms-azuretools.vscode-docker"
+	],
+	"containerEnv": { "DISPLAY": ":1" },
+	"mounts": ["source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=default", "source=/Users/ebbbe288/Documents/TestData_bbc021v/,target=/TestData,type=bind,consistency=cached"]
+	// "mounts": ["source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=default", "source=/local/source/path/goes/here,target=/target/path/in/container/goes/here,type=bind,consistency=cached"]
+	}
