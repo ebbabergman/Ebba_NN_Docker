@@ -14,10 +14,11 @@ ARG USER_GID=$USER_UID
 # install build utilities
 RUN  apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y git && \
-    libjpeg62 libjpeg62-dev && \
-    sudo &&\
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+    git \
+    libjpeg62 libjpeg62-dev \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
 
 # check our python environment
 RUN python3 --version
