@@ -17,7 +17,7 @@ RUN  apt-get update && \
     apt-get install -y git && \
     libjpeg62 libjpeg62-dev && \
     sudo &&\
-    && rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 # check our python environment
 RUN python3 --version
