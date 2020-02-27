@@ -1,0 +1,51 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: ebba-cnn
+  namespace: labinf
+  labels:
+    app: ebba_cnn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ebba-cnn
+  template:
+    metadata:
+      labels:
+        app: ebba-cnn
+    spec:
+      containers:
+      - name: ebba-cnn
+        image: ebbab/ebba_cnn_docker
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
+        ports:
+        - containerPort: 8888
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "10"
+            memory: 24000Mi
+            nvidia.com/gpu: "1"
+          requests:
+            cpu: "1"
+            memory: 1000Mi
+            nvidia.com/gpu: "1"
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /home/vscode
+          name: notebook-home
+          subPath: ebba-home
+        - mountPath: /scratch-shared
+          name: scratch-shared
+      volumes:
+      - name: notebook-home
+        persistentVolumeClaim:
+          claimName: notebook-homes-pvc
+      - name: scratch-shared
+        hostPath:
+          path: /media/scratch/shared
+          type: DirectoryOrCreate 
