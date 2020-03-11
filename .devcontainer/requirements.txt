@@ -2,3 +2,4 @@ pandas
 pylint
 Pillow
 matplotlib
+htop # not tried yet
