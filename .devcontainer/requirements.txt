@@ -3,3 +3,4 @@ pylint
 Pillow
 matplotlib
 htop # not tried yet
+rope # not tried yet
