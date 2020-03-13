@@ -25,6 +25,8 @@ RUN  apt-get update && \
 RUN python3 --version
 RUN pip3 --version
 
+
+##https://stackoverflow.com/questions/25185405/using-gpu-from-a-docker-container FOR CUPA installation, a couple of comments down
 # Installing python dependencies
 COPY .devcontainer/requirements.txt /tmp/pip-tmp/
 RUN  pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
