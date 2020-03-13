@@ -4,3 +4,4 @@ Pillow
 matplotlib
 htop # not tried yet
 rope # not tried yet
+tmux # not tried yet
