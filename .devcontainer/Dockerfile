@@ -16,6 +16,9 @@ RUN  apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
     git \
+    wget \
+    curl \
+    tmux \
     libjpeg62 libjpeg62-dev \
     sudo \
     && rm -rf /var/lib/apt/lists/*
