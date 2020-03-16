@@ -42,6 +42,7 @@ RUN  pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
     #
     ## add other programs
     && add-apt-repository universe\
+    && apt-get update \
     && apt-get install -y sudo \
        htop\
     ## Clean up
