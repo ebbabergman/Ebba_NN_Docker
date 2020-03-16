@@ -43,11 +43,6 @@ RUN  pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     #
-    ## add other programs
-    && add-apt-repository universe\
-    && apt-get update \
-    && apt-get install -y sudo \
-       htop\
     ## Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
