@@ -2,5 +2,4 @@ pandas
 pylint
 Pillow
 matplotlib
-htop
 rope
