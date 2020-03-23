@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest-py3
+FROM tensorflow/tensorflow:latest-gpu-py3
 LABEL maintainer="ebba.bergman@farmbio.uu.se"
 
 # Avoid warnings by switching to noninteractive
@@ -21,7 +21,7 @@ RUN  apt-get update && \
     tmux \
     libjpeg62 libjpeg62-dev \
     #Line below to try to run on GPU
-    tensorrt python3-libnvinfer-dev uff-converter-tf \ 
+    #tensorrt python3-libnvinfer-dev uff-converter-tf \ 
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
