@@ -1,6 +1,5 @@
----
+apiVersion: apps/v1
 kind: Deployment
-apiVersion: extensions/v1beta1
 metadata:
   name: ebba-cnn
   namespace: labinf
@@ -10,9 +9,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ebba-cnn
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: ebba-cnn
     spec:
@@ -40,21 +44,41 @@ spec:
             nvidia.com/gpu: "1"
           requests:
             cpu: "1"
-            memory: 46000Mi
+            memory: 64000Mi
             nvidia.com/gpu: "1"
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /home/vscode
+        - mountPath: /home/jovyan
           name: notebook-home
           subPath: ebba-home
         - mountPath: /scratch-shared
           name: scratch-shared
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - chown -R 1000:1000 /home/jovyan
+        image: busybox
+        imagePullPolicy: Always
+        name: volume-mount-set-permissions-on-nfs-volume-home-mount
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /home/jovyan
+          name: notebook-home
+          subPath: ebba-home
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
       volumes:
       - name: notebook-home
         persistentVolumeClaim:
           claimName: notebook-homes-pvc
-      - name: scratch-shared
-        hostPath:
+      - hostPath:
           path: /media/scratch/shared
-          type: DirectoryOrCreate 
+          type: DirectoryOrCreate
+        name: scratch-shared
