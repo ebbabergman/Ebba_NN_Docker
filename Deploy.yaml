@@ -16,6 +16,15 @@ spec:
       labels:
         app: ebba-cnn
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: acceleration
+                operator: In
+                values:
+                - gpu
       containers:
       - name: ebba-cnn
         image: ebbab/ebba_cnn_docker
