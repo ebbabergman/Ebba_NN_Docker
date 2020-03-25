@@ -27,11 +27,11 @@ spec:
         resources:
           limits:
             cpu: "10"
-            memory: 64000Mi
+            memory: 96000Mi
             nvidia.com/gpu: "1"
           requests:
             cpu: "1"
-            memory: 1000Mi
+            memory: 46000Mi
             nvidia.com/gpu: "1"
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
