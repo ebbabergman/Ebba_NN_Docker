@@ -19,7 +19,7 @@ RUN  apt-get update && \
     wget \
     curl \
     tmux \
-    libjpeg62 libjpeg62-dev \
+    #libjpeg62 libjpeg62-dev \
     #Line below to try to run on GPU
     #tensorrt python3-libnvinfer-dev uff-converter-tf \ 
     sudo \
